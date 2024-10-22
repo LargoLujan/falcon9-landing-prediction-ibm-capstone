@@ -1,7 +1,3 @@
-Aquí te dejo el **README** completado con todo el contenido que has trabajado hasta ahora en el proyecto **Falcon 9 Landing Prediction**. También he añadido el código y el archivo `requirements.txt` necesario para ejecutar el proyecto:
-
----
-
 # Falcon 9 Landing Prediction - IBM Data Science Capstone Project
 
 Welcome to the **Falcon 9 Landing Prediction** repository, a part of the **IBM Data Science Professional Certificate**. This project uses **machine learning** to predict the reusability of the first stage of the Falcon 9 rocket, helping to estimate the costs of space launches.
