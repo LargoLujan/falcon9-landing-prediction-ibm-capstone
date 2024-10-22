@@ -1,3 +1,7 @@
+Aquí te dejo el **README** completado con todo el contenido que has trabajado hasta ahora en el proyecto **Falcon 9 Landing Prediction**. También he añadido el código y el archivo `requirements.txt` necesario para ejecutar el proyecto:
+
+---
+
 # Falcon 9 Landing Prediction - IBM Data Science Capstone Project
 
 Welcome to the **Falcon 9 Landing Prediction** repository, a part of the **IBM Data Science Professional Certificate**. This project uses **machine learning** to predict the reusability of the first stage of the Falcon 9 rocket, helping to estimate the costs of space launches.
@@ -24,17 +28,20 @@ This project simulates a real-world scenario where **Space Y**, a new rocket com
 ---
 
 ## Motivation
-Reusability is key in reducing costs for space missions. Understanding when and why the **Falcon 9 first stage** successfully lands helps improve decision-making and optimize pricing for future launches. This project applies machine learning techniques to make such predictions.
+Reusability is key in reducing costs for space missions. Understanding when and why the **Falcon 9 first stage** successfully lands helps improve decision-making and optimize pricing for future launches. This project applies machine learning techniques to make such predictions and help potential competitors of SpaceX.
 
 ---
 
 ## Data Sources
 The data used in this project comes from public SpaceX launch data and includes:
 - **Launch Dates**
-- **Payload Information**
+- **Payload Mass**
 - **Orbital Parameters**
-- **Launch Outcome**
-- **First Stage Landing Outcome**
+- **Launch Sites**
+- **Grid Fins and Legs Usage**
+- **Landing Outcomes** (successful or failed)
+
+The data was obtained from the SpaceX API and web scraping Wikipedia pages for Falcon 9 and Falcon Heavy launches, covering launches from 2010 to 2020.
 
 ---
 
@@ -42,8 +49,11 @@ The data used in this project comes from public SpaceX launch data and includes:
 This project leverages the following tools and technologies:
 - **Python**: Programming language used for data manipulation and model development.
 - **Pandas**: Data analysis and manipulation library.
+- **NumPy**: Efficient numerical computations.
 - **Scikit-learn**: Machine learning algorithms and tools.
 - **Matplotlib & Seaborn**: Data visualization libraries.
+- **Plotly Dash**: For building interactive dashboards.
+- **Folium**: For creating interactive maps.
 - **Jupyter Notebook**: For interactive development and analysis.
 
 ---
@@ -62,52 +72,60 @@ To set up this project locally, follow these steps:
    pip install -r requirements.txt
    ```
 
-3. Run the Jupyter notebooks for data exploration and model training.
+3. Run the Jupyter notebooks for data exploration, feature engineering, and model training:
+   ```bash
+   jupyter notebook
+   ```
+
+4. To launch the Plotly Dash dashboard, run:
+   ```bash
+   python spacex_dash_app.py
+   ```
 
 ---
 
 ## Modeling Process
 
-<details>
-  <summary>Data Preprocessing</summary>
+### Data Preprocessing
 
-  - Handle missing values.
-  - Normalize and standardize the data.
-  - One-hot encoding for categorical variables.
-  
-</details>
+- **Data Cleaning**: Handling missing values in features like `LandingPad` and `PayloadMass`.
+- **Feature Engineering**: One-hot encoding categorical variables such as `Orbit`, `LaunchSite`, and `LandingPad`.
+- **Scaling**: Standardized numeric features using `StandardScaler()`.
 
-<details>
-  <summary>Model Training</summary>
+### Model Training
 
-  - **Logistic Regression** for initial classification.
-  - **Decision Trees** and **K-Nearest Neighbors (KNN)** to improve accuracy.
-  - **Support Vector Machine (SVM)** for robust classification.
-  
-</details>
+- **Logistic Regression**: Used for initial classification of landing success.
+- **Decision Trees**: Trained to identify decision paths leading to landing success.
+- **K-Nearest Neighbors (KNN)**: Implemented for proximity-based classification.
+- **Support Vector Machine (SVM)**: Explored for boundary classification with different kernels.
+- **GridSearchCV**: Applied to tune hyperparameters and select the best-performing models.
 
 ---
 
 ## Results
-The results from the models showed:
-- **Logistic Regression** achieved an accuracy of X%.
-- **KNN** and **Decision Trees** had Y% accuracy, with notable performance on certain classes.
-- **SVM** was able to achieve Z% accuracy, providing more insight into complex data patterns.
+The models achieved the following accuracies on the test set:
+
+- **Logistic Regression**: 84.6% accuracy
+- **Support Vector Machine (SVM)**: 84.8% accuracy
+- **Decision Trees**: 83.3% accuracy
+- **K-Nearest Neighbors (KNN)**: 83.3% accuracy
+
+The confusion matrices revealed that false positives were the most common issue in classification. In particular, the models struggled to distinguish between failed and successful landing attempts in some cases.
 
 ---
 
 ## Future Work
-- Improve model accuracy by fine-tuning hyperparameters.
-- Explore additional features to improve the prediction models.
-- Deploy the model using **Flask** or **FastAPI** for real-time predictions.
+- **Feature Expansion**: Include weather data and launch time to improve prediction accuracy.
+- **Model Optimization**: Fine-tune hyperparameters and experiment with advanced models like Random Forests and XGBoost.
+- **Deployment**: Deploy the model as an API using Flask or FastAPI for real-time predictions.
 
 ---
 
 ## Contributors
-- **Your Name** - Data Scientist and Project Lead
+- **Manuel Luján Vilchez** - Data Scientist and Project Lead
+- **IBM Data Science Capstone Project Team** - Instructors and resources for guidance.
 
 ---
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
-```
